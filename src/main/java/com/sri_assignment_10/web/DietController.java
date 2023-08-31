@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sri_assignment_10.domain.Day;
 import com.sri_assignment_10.domain.Meal;
+import com.sri_assignment_10.domain.Week;
 import com.sri_assignment_10.services.DietService;
 
 @RestController
@@ -29,18 +30,21 @@ public class DietController {
 			@RequestParam(value = "numCalories", required = false) String numCalories, 
 			@RequestParam(value = "diet", required = false) String diet,
 			@RequestParam(value = "exclude", required = false) String exclude) {
-		URI uri = DietService.createUri(Integer.parseInt(numCalories), diet, exclude);
-		Day day = DietService.makeRequest(uri);
+		URI uri = DietService.createUri(Integer.parseInt(numCalories), diet, exclude, "day");
+		Day day = DietService.makeDayRequest(uri);
 		return day.getMeals();
 	}
 
 	@GetMapping("mealplanner/week")
-	public List<Meal> getWeekMeals(
+	public String getWeekMeals(
 			@RequestParam(value = "numCalories", required = false) String numCalories, 
 			@RequestParam(value = "diet", required = false) String diet,
 			@RequestParam(value = "exclude", required = false) String exclude) {
-		URI uri = DietService.createUri(Integer.parseInt(numCalories), diet, exclude);
-		Day day = DietService.makeRequest(uri);
-		return day.getMeals();
+		URI uri = DietService.createUri(Integer.parseInt(numCalories), diet, exclude, "week");
+		
+		Week week = DietService.makeWeekRequest(uri);
+		
+		
+		return "Return string";
 	}
 }
