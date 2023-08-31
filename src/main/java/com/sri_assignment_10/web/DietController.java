@@ -18,11 +18,6 @@ public class DietController {
 	@Autowired
 	DietService dietService;
 
-	@GetMapping("/test")
-	public String testPoint() {
-		return "This is the test point";
-	}
-
 	@GetMapping("mealplanner/day")
 	public ResponseEntity<DayResponse> getDayMeals(
 			@RequestParam(value = "numCalories", required = false) String numCalories,
