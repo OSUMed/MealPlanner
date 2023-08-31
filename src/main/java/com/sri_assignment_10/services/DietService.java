@@ -17,7 +17,7 @@ public class DietService {
 	@Value("${API.key}")
 	private String apiKey;
 
-	public URI createUri(Integer numCalories, String diet, String exclude, String timeFrame) {
+	public URI createUri(Integer numCalories, String diet, String exclusions, String timeFrame) {
 		System.out.println("Api key is: " + apiKey);
 		UriComponentsBuilder uriBuilder = UriComponentsBuilder
 				.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate").queryParam("apiKey", apiKey)
@@ -31,8 +31,8 @@ public class DietService {
 			uriBuilder.queryParam("diet", diet);
 		}
 
-		if (exclude != null) {
-			uriBuilder.queryParam("exclude", exclude);
+		if (exclusions != null) {
+			uriBuilder.queryParam("exclude", exclusions);
 		}
 
 		URI uri = uriBuilder.build().toUri();

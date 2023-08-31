@@ -27,8 +27,8 @@ public class DietController {
 	public ResponseEntity<DayResponse> getDayMeals(
 			@RequestParam(value = "numCalories", required = false) String numCalories,
 			@RequestParam(value = "diet", required = false) String diet,
-			@RequestParam(value = "exclude", required = false) String exclude) {
-		URI uri = dietService.createUri(Integer.parseInt(numCalories), diet, exclude, "day");
+			@RequestParam(value = "exclusions", required = false) String exclusions) {
+		URI uri = dietService.createUri(caloriesStrToInt(numCalories), diet, exclusions, "day");
 		ResponseEntity<DayResponse> dayResponse = DietService.makeDayRequest(uri);
 		return dayResponse;
 	}
@@ -37,9 +37,14 @@ public class DietController {
 	public ResponseEntity<WeekResponse> getWeekMeals(
 			@RequestParam(value = "numCalories", required = false) String numCalories,
 			@RequestParam(value = "diet", required = false) String diet,
-			@RequestParam(value = "exclude", required = false) String exclude) {
-		URI uri = dietService.createUri(Integer.parseInt(numCalories), diet, exclude, "week");
+			@RequestParam(value = "exclusions", required = false) String exclusions) {
+		URI uri = dietService.createUri(caloriesStrToInt(numCalories), diet, exclusions, "week");
 		ResponseEntity<WeekResponse> weekResponse = DietService.makeWeekRequest(uri);
 		return weekResponse;
+	}
+	public Integer caloriesStrToInt(String numCalories) {
+		Integer numCaloriesInt = null;
+		if (numCalories != null) numCaloriesInt = Integer.parseInt(numCalories);
+		return numCaloriesInt;
 	}
 }
