@@ -46,7 +46,7 @@ public class DietService {
 		return uri;
 	}
 
-	public static ResponseEntity<DayResponse> makeDayRequest(URI uri) {
+	public ResponseEntity<DayResponse> makeDayRequest(URI uri) {
 		// TODO Auto-generated method stub
 		RestTemplate rt = new RestTemplate();
 		ResponseEntity<DayResponse> responseString = rt.getForEntity(uri, DayResponse.class);
@@ -54,7 +54,7 @@ public class DietService {
 		return responseString;
 	}
 	
-	public static ResponseEntity<WeekResponse> makeWeekRequest(URI uri) {
+	public ResponseEntity<WeekResponse> makeWeekRequest(URI uri) {
 		// TODO Auto-generated method stub
 		RestTemplate rt = new RestTemplate();
 		ResponseEntity<WeekResponse> responseString = rt.getForEntity(uri, WeekResponse.class);
