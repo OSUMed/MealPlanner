@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.sri_assignment_10.domain.Day;
-import com.sri_assignment_10.domain.Week;
+import com.sri_assignment_10.domain.DayResponse;
+import com.sri_assignment_10.domain.WeekResponse;
 
 public class DietService {
 
@@ -38,19 +38,19 @@ public class DietService {
 		return uri;
 	}
 
-	public static Day makeDayRequest(URI uri) {
+	public static ResponseEntity<DayResponse> makeDayRequest(URI uri) {
 		// TODO Auto-generated method stub
 		RestTemplate rt = new RestTemplate();
-		ResponseEntity<Day> responseString = rt.getForEntity(uri, Day.class);
+		ResponseEntity<DayResponse> responseString = rt.getForEntity(uri, DayResponse.class);
 		System.out.println("Response is " + responseString.getBody());
-		return responseString.getBody();
+		return responseString;
 	}
 	
-	public static Week makeWeekRequest(URI uri) {
+	public static ResponseEntity<WeekResponse> makeWeekRequest(URI uri) {
 		// TODO Auto-generated method stub
 		RestTemplate rt = new RestTemplate();
-		ResponseEntity<Week> responseString = rt.getForEntity(uri, Week.class);
+		ResponseEntity<WeekResponse> responseString = rt.getForEntity(uri, WeekResponse.class);
 		System.out.println("Week Response is " + responseString.getBody());
-		return responseString.getBody();
+		return responseString;
 	}
 }

@@ -10,8 +10,8 @@ public class Nutrients {
 	@JsonProperty("protein")
 	private Double protein;
 
-	@JsonProperty("date")
-	private Double date;
+	@JsonProperty("fat")
+	private Double fat;
 
 	@JsonProperty("carbohydrates")
 	private Double carbohydrates;
@@ -32,12 +32,12 @@ public class Nutrients {
 		this.protein = protein;
 	}
 
-	public double getDate() {
-		return date;
+	public Double getFat() {
+		return fat;
 	}
 
-	public void setDate(double date) {
-		this.date = date;
+	public void setFat(Double fat) {
+		this.fat = fat;
 	}
 
 	public double getCarbohydrates() {
@@ -50,7 +50,7 @@ public class Nutrients {
 
 	@Override
 	public String toString() {
-		return "Nutrients [calories=" + calories + ", protein=" + protein + ", date=" + date + ", carbohydrates="
+		return "Nutrients [calories=" + calories + ", protein=" + protein + ", fat=" + fat + ", carbohydrates="
 				+ carbohydrates + "]";
 	}
 
