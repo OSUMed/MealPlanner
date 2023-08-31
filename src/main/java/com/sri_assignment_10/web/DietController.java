@@ -3,9 +3,10 @@ package com.sri_assignment_10.web;
 import java.net.URI;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
+import com.sri_assignment_10.domain.Day;
 import com.sri_assignment_10.services.DietService;
 
 @RestController
@@ -14,6 +15,7 @@ public class DietController {
 	public String testPoint() {
 		return "This is the test point";
 	}
+
 	@GetMapping("/")
 	public String hey() {
 		System.out.println("Triggered root endpoint!");
@@ -21,11 +23,14 @@ public class DietController {
 	}
 
 	@GetMapping("mealplanner/day")
-	public String getDayMeals(String numCalories, String diet, String exclusions) {
-		
-		URI uri = DietService.createUri(Integer.parseInt(numCalories), diet, exclusions);
-		String res = DietService.makeRequest(uri);
-		return res;
+	public String getDayMeals(
+			@RequestParam(value = "numCalories", required = false) String numCalories, 
+			@RequestParam(value = "diet", required = false) String diet,
+			@RequestParam(value = "exclude", required = false) String exclude) {
+//		System.out.println(numCalories + diet + exclude);
+		URI uri = DietService.createUri(Integer.parseInt(numCalories), diet, exclude);
+		Day res = DietService.makeRequest(uri);
+		return "Hello";
 	}
 
 	@GetMapping("mealplanner/week")

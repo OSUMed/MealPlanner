@@ -7,28 +7,41 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.sri_assignment_10.domain.Day;
+
 public class DietService {
-	
+
 	@Value("${API.key}")
-	private String apiKey;
-	
+	private static String apiKey;
+
 	public static URI createUri(Integer numCalories, String diet, String exclude) {
-		
-		URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate")
-									  .queryParam("apiKey", apiKey)
-									  .queryParam("numCalories", numCalories)
-									  .queryParam("diet", diet)
-									  .queryParam("exclude", exclude)
-									  .build()
-									  .toUri();
+//		System.out.println(apiKey);
+		UriComponentsBuilder uriBuilder = UriComponentsBuilder
+				.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate").queryParam("apiKey", "a69a1ebb7d3b4f28a72e33a06f21a495")
+				.queryParam("timeFrame", "day");
+
+		if (numCalories != null) {
+			uriBuilder.queryParam("numCalories", numCalories);
+		}
+
+		if (diet != null) {
+			uriBuilder.queryParam("diet", diet);
+		}
+
+		if (exclude != null) {
+			uriBuilder.queryParam("exclude", exclude);
+		}
+
+		URI uri = uriBuilder.build().toUri();
+
 		return uri;
 	}
 
-	public static String makeRequest(URI uri) {
+	public static Day makeRequest(URI uri) {
 		// TODO Auto-generated method stub
 		RestTemplate rt = new RestTemplate();
-		ResponseEntity<String> responseString = rt.getForEntity(uri, String.class);
-		System.out.println(responseString.getBody());
-		return "HellO";
+		ResponseEntity<Day> responseString = rt.getForEntity(uri, Day.class);
+		System.out.println("Response is " + responseString.getBody());
+		return responseString.getBody();
 	}
 }
