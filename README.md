@@ -34,14 +34,12 @@ This is a Spring Boot-based RESTful API for planning meals for a day or week bas
 
 1. Clone the repository:
 
-\`\`\`
-git clone https://github.com/yourusername/meal-planner-api.git
-\`\`\`
+
+git clone https://github.com/OSUMed/MealPlanner.git
 
 2. Navigate into the project directory:
 
-cd meal-planner-api
-
+cd MealPlanner
 
 3. Add your Spoonacular API key in the `application.properties` file:
 
