@@ -40,27 +40,26 @@ git clone https://github.com/yourusername/meal-planner-api.git
 
 2. Navigate into the project directory:
 
-\`\`\`
 cd meal-planner-api
-\`\`\`
+
 
 3. Add your Spoonacular API key in the `application.properties` file:
 
-\`\`\`properties
+properties
 API.key=your_spoonacular_api_key_here
-\`\`\`
+
 
 4. Build the project:
 
-\`\`\`
+
 mvn clean install
-\`\`\`
+
 
 5. Run the application:
 
-\`\`\`
+
 mvn spring-boot:run
-\`\`\`
+
 
 ## API Endpoints
 
@@ -74,10 +73,10 @@ mvn spring-boot:run
 
 ## Usage Examples
 
-\`\`\`
+
 GET /mealplanner/day?numCalories=1500&diet=vegetarian
 GET /mealplanner/week?exclusions=nuts,dairy
-\`\`\`
+
 
 ## Contributing
 
