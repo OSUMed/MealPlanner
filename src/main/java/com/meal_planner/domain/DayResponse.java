@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DayResponse {
 	@JsonProperty("meals")
 	private List<Meal> meals;
-	
+
 	@JsonProperty("nutrients")
 	private Nutrients nutrients;
 
@@ -31,5 +31,5 @@ public class DayResponse {
 	public String toString() {
 		return "Day [meals=" + meals + ", nutrients=" + nutrients + "]";
 	}
-	
+
 }

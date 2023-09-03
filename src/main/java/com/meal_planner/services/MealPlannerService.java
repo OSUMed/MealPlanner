@@ -1,6 +1,7 @@
 package com.meal_planner.services;
 
 import java.net.URI;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -16,30 +17,21 @@ public class MealPlannerService {
 
 	@Value("${API.key}")
 	private String apiKey;
-	
+
 	@Value("${spoonacular.urls.base}")
 	private String base;
-	
+
 	@Value("${spoonacular.urls.mealplan}")
 	private String mealPlan;
 
-	public URI createUri(Integer numCalories, String diet, String exclusions, String timeFrame) {
-		System.out.println("Api key is: " + apiKey);
+	public URI createUri(Optional<Integer> numCalories, Optional<String> diet, Optional<String> exclusions, String timeFrame) {
 		UriComponentsBuilder uriBuilder = UriComponentsBuilder
 				.fromHttpUrl(base+mealPlan).queryParam("apiKey", apiKey)
 				.queryParam("timeFrame", timeFrame);
 
-		if (numCalories != null) {
-			uriBuilder.queryParam("targetCalories", numCalories);
-		}
-
-		if (diet != null) {
-			uriBuilder.queryParam("diet", diet);
-		}
-
-		if (exclusions != null) {
-			uriBuilder.queryParam("exclude", exclusions);
-		}
+		numCalories.ifPresent(value -> uriBuilder.queryParam("targetCalories", value));
+		diet.ifPresent(value -> uriBuilder.queryParam("diet", value));
+		exclusions.ifPresent(value -> uriBuilder.queryParam("exclude", value));
 
 		URI uri = uriBuilder.build().toUri();
 
@@ -50,15 +42,13 @@ public class MealPlannerService {
 		// TODO Auto-generated method stub
 		RestTemplate rt = new RestTemplate();
 		ResponseEntity<DayResponse> responseString = rt.getForEntity(uri, DayResponse.class);
-		System.out.println("Response is " + responseString.getBody());
 		return responseString;
 	}
-	
+
 	public ResponseEntity<WeekResponse> makeWeekRequest(URI uri) {
 		// TODO Auto-generated method stub
 		RestTemplate rt = new RestTemplate();
 		ResponseEntity<WeekResponse> responseString = rt.getForEntity(uri, WeekResponse.class);
-		System.out.println("Week Response is " + responseString.getBody());
 		return responseString;
 	}
 }

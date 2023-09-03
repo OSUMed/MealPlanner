@@ -1,6 +1,7 @@
 package com.meal_planner.web;
 
 import java.net.URI;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,20 +21,22 @@ public class MealPlannerController {
 
 	@GetMapping("mealplanner/day")
 	public ResponseEntity<DayResponse> getDayMeals(
-			@RequestParam(value = "numCalories", required = false) String numCalories,
-			@RequestParam(value = "diet", required = false) String diet,
-			@RequestParam(value = "exclusions", required = false) String exclusions) {
-		URI uri = mealPlannerService.createUri(caloriesStrToInt(numCalories), diet, exclusions, "day");
+			@RequestParam(value = "numCalories", required = false) Optional<String> numCaloriesOpt,
+			@RequestParam(value = "diet", required = false) Optional<String> diet,
+			@RequestParam(value = "exclusions", required = false) Optional<String> exclusions) {
+		Optional<Integer> numCalories = numCaloriesOpt.map(this::caloriesStrToInt);	// this -> RestController Spring instance
+		URI uri = mealPlannerService.createUri(numCalories, diet, exclusions, "day");
 		ResponseEntity<DayResponse> dayResponse = mealPlannerService.makeDayRequest(uri);
 		return dayResponse;
 	}
 
 	@GetMapping("mealplanner/week")
 	public ResponseEntity<WeekResponse> getWeekMeals(
-			@RequestParam(value = "numCalories", required = false) String numCalories,
-			@RequestParam(value = "diet", required = false) String diet,
-			@RequestParam(value = "exclusions", required = false) String exclusions) {
-		URI uri = mealPlannerService.createUri(caloriesStrToInt(numCalories), diet, exclusions, "week");
+			@RequestParam(value = "numCalories", required = false) Optional<String> numCaloriesOpt,
+			@RequestParam(value = "diet", required = false) Optional<String> diet,
+			@RequestParam(value = "exclusions", required = false) Optional<String> exclusions) {
+		Optional<Integer> numCalories = numCaloriesOpt.map(this::caloriesStrToInt);	// this -> RestController Spring instance
+		URI uri = mealPlannerService.createUri(numCalories, diet, exclusions, "week");
 		ResponseEntity<WeekResponse> weekResponse = mealPlannerService.makeWeekRequest(uri);
 		return weekResponse;
 	}

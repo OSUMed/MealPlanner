@@ -20,5 +20,5 @@ public class WeekResponse {
 	public String toString() {
 		return "Week [days=" + days + "]";
 	}
-	
+
 }

@@ -3,10 +3,10 @@ package com.meal_planner.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Meal {
-	
+
 	@JsonProperty("id")
 	private Integer id;
-	
+
 	@JsonProperty("imageType")
 	private String imageType;
 
@@ -18,7 +18,7 @@ public class Meal {
 
 	@JsonProperty("servings")
 	private Integer servings;
-	
+
 	@JsonProperty("sourceUrl")
 	private String sourceUrl;
 
@@ -75,5 +75,5 @@ public class Meal {
 		return "Meal [id=" + id + ", imageType=" + imageType + ", title=" + title + ", readyInMinutes=" + readyInMinutes
 				+ ", servings=" + servings + ", sourceUrl=" + sourceUrl + "]";
 	}
-	
+
 }
