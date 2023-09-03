@@ -1,4 +1,4 @@
-package com.sri_assignment_10.services;
+package com.meal_planner.services;
 
 import java.net.URI;
 
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.sri_assignment_10.domain.DayResponse;
-import com.sri_assignment_10.domain.WeekResponse;
+import com.meal_planner.domain.DayResponse;
+import com.meal_planner.domain.WeekResponse;
 
 @Service
 public class DietService {

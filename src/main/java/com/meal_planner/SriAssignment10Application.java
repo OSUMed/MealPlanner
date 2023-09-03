@@ -1,4 +1,4 @@
-package com.sri_assignment_10;
+package com.meal_planner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

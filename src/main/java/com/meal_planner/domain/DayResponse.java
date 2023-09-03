@@ -1,4 +1,4 @@
-package com.sri_assignment_10.domain;
+package com.meal_planner.domain;
 
 import java.util.List;
 

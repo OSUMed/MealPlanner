@@ -1,4 +1,4 @@
-package com.sri_assignment_10;
+package com.meal_planner;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

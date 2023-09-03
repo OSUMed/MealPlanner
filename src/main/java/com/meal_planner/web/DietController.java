@@ -1,4 +1,4 @@
-package com.sri_assignment_10.web;
+package com.meal_planner.web;
 
 import java.net.URI;
 
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sri_assignment_10.domain.DayResponse;
-import com.sri_assignment_10.domain.WeekResponse;
-import com.sri_assignment_10.services.DietService;
+import com.meal_planner.domain.DayResponse;
+import com.meal_planner.domain.WeekResponse;
+import com.meal_planner.services.DietService;
 
 @RestController
 public class DietController {
