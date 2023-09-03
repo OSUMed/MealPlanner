@@ -12,7 +12,7 @@ import com.meal_planner.domain.DayResponse;
 import com.meal_planner.domain.WeekResponse;
 
 @Service
-public class DietService {
+public class MealPlannerService {
 
 	@Value("${API.key}")
 	private String apiKey;

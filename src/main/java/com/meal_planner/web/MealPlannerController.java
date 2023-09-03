@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.meal_planner.domain.DayResponse;
 import com.meal_planner.domain.WeekResponse;
-import com.meal_planner.services.DietService;
+import com.meal_planner.services.MealPlannerService;
 
 @RestController
-public class DietController {
+public class MealPlannerController {
 
 	@Autowired
-	DietService dietService;
+	MealPlannerService mealPlannerService;
 
 	@GetMapping("mealplanner/day")
 	public ResponseEntity<DayResponse> getDayMeals(
 			@RequestParam(value = "numCalories", required = false) String numCalories,
 			@RequestParam(value = "diet", required = false) String diet,
 			@RequestParam(value = "exclusions", required = false) String exclusions) {
-		URI uri = dietService.createUri(caloriesStrToInt(numCalories), diet, exclusions, "day");
-		ResponseEntity<DayResponse> dayResponse = dietService.makeDayRequest(uri);
+		URI uri = mealPlannerService.createUri(caloriesStrToInt(numCalories), diet, exclusions, "day");
+		ResponseEntity<DayResponse> dayResponse = mealPlannerService.makeDayRequest(uri);
 		return dayResponse;
 	}
 
@@ -33,8 +33,8 @@ public class DietController {
 			@RequestParam(value = "numCalories", required = false) String numCalories,
 			@RequestParam(value = "diet", required = false) String diet,
 			@RequestParam(value = "exclusions", required = false) String exclusions) {
-		URI uri = dietService.createUri(caloriesStrToInt(numCalories), diet, exclusions, "week");
-		ResponseEntity<WeekResponse> weekResponse = dietService.makeWeekRequest(uri);
+		URI uri = mealPlannerService.createUri(caloriesStrToInt(numCalories), diet, exclusions, "week");
+		ResponseEntity<WeekResponse> weekResponse = mealPlannerService.makeWeekRequest(uri);
 		return weekResponse;
 	}
 	public Integer caloriesStrToInt(String numCalories) {
