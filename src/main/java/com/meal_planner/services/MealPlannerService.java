@@ -51,4 +51,16 @@ public class MealPlannerService {
 		ResponseEntity<WeekResponse> responseString = rt.getForEntity(uri, WeekResponse.class);
 		return responseString;
 	}
+	
+	// Generic Version for practice:
+	public <T> ResponseEntity<T> makeRequest(URI uri, Class<T> responseType) {
+	    RestTemplate rt = new RestTemplate();
+	    ResponseEntity<T> response = rt.getForEntity(uri, responseType);
+	    return response;
+	}
+	// Then call via:
+		// ResponseEntity<WeekResponse> weekResponse = makeRequest(uri, WeekResponse.class);
+		// ResponseEntity<DayResponse> dayResponse = makeRequest(uri, DayResponse.class);
+
+
 }
